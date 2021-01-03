@@ -1,7 +1,7 @@
 from orman import OrmanNameSpace
 
-alias='nevil'
-reg_code='maskelyne'
+alias='helfei'
+reg_code='breadmaker'
 password='my-local-secret-pass'
 
 print("## Test 1 - register namespace")
@@ -15,7 +15,7 @@ ens = orman.encrypt( orman.ns() )
 if 'aeskey' in ens:
     print("           └──PASS")
 
-print("## Test 3 - decrypt namespace")
+print("## Test 3 - reinstantiate and decrypt namespace")
 orman = OrmanNameSpace()
 orman.ns()
 dns = orman.decrypt(ens)

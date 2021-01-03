@@ -1,4 +1,4 @@
-import yaml
+import yaml, os
 from pathlib import Path as GetHomePath 
 # If you want to override the default config path, 
 # change False to that directory with no leading slash
@@ -28,4 +28,6 @@ def Config(Path=None,File="orman.yml"):
     paths = dict()
     for path in Paths:
         paths[path] = Paths[path]['Path']
+    spaces_endpoint = c['orman']['Endpoints']['OrmanSpaces']
+    os.environ["ORMAN_SPACES_ENDPOINT"] = spaces_endpoint
     return paths

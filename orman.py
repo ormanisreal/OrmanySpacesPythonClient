@@ -9,6 +9,7 @@ from lib.tools import delete_local_namespace
 class OrmanNameSpace(object):
 
     def __init__(self):
+        # Config()
         self.alias = None
         self.pubKey = None
         self.privKey = None

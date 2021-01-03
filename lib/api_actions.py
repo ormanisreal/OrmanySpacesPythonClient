@@ -6,6 +6,10 @@ from .handlers import check_lspace, save_lspace
 from .tools import convert_size
 max_payload_size = 6186598.4
 
+def endpoint(PATH):
+    ENDPOINT = os.environ["ORMAN_SPACES_ENDPOINT"]
+    return 'https://%s/%s' % (ENDPOINT, PATH)
+
 def register_namespace(alias, reg_code, pubKey=None, password=None):
     """
     Used for registering a new namespace. If no pubKey is provided
@@ -21,7 +25,7 @@ def register_namespace(alias, reg_code, pubKey=None, password=None):
         print("     Device already registred to a namespace")
         return False
     
-    url='https://api.orman.xyz/register'
+    url = endpoint('register')
     payload = json.dumps({
         "action": "register",
         "alias": alias,
@@ -61,7 +65,7 @@ def get_token(alias, reg_code, privKey):
         "namespace": alias,
         "reg_code": reg_code
     })
-    url="https://api.orman.xyz/auth"
+    url = endpoint('auth')
     r = requests.post(url,data=data)  
     token_str = (r.__dict__['_content']).decode()
     r_token_obj = json.loads(token_str)
@@ -85,7 +89,7 @@ def test_token(authToken):
     """
     Used to test the status of a authToken
     """
-    url="https://api.orman.xyz/test"
+    url = endpoint('test')
     r = requests.get(url, headers={'authorizationToken': authToken}) 
     if r.status_code == 403:
         print("403")
@@ -114,7 +118,7 @@ def sync_namespace(alias, reg_code, authToken, space=None, action=None):
         print(" ACTION: UPDATE")
     elif action == 'delete':
         print(" ACTION: DELETE")
-    url='https://api.orman.xyz/namespace'
+    url = endpoint('namespace')
     headers={'authorizationToken': authToken}
     data = json.dumps({'action': action, 'alias': alias, 'reg_code': reg_code, 'namespace': space})
     payload_size = sys.getsizeof(data)

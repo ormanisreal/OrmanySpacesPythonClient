@@ -6,3 +6,5 @@ orman:
     local_namespace_path: 
       Path: /Users/nevil/.orman/namespace.orman
       Description: Loaction to store your encrpyted namespace file
+  Endpoints:
+    OrmanSpaces: 71v32103yg.execute-api.us-east-1.amazonaws.com/dev
