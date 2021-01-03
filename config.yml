@@ -1,0 +1,8 @@
+orman:
+  Paths:
+    local_key_path: 
+      Path: /Users/nevil/.orman/orman.key
+      Description: Location to store your hashed password, used to encrypt your namespace (locally)
+    local_namespace_path: 
+      Path: /Users/nevil/.orman/namespace.orman
+      Description: Loaction to store your encrpyted namespace file
