@@ -45,14 +45,15 @@ def register_namespace(alias, reg_code, pubKey=None, password=None):
 
 def get_token(alias, reg_code, privKey):
     """
-    Used to retrieve an encrypted token from the orman api.
-    The token will have been encrypted by the backed using the pubKey associated
-    with the namespace alias provided in request. The privKey provided
-    must match the pubKey for that namespace. It is used to decrypt the token, thus
-    provid you are the owner of the namespace.
+    Used to retrieve a token from the orman api.
+    The token will have been encrypted by the backend 
+    using the pubKey associated with the namespace alias in request. 
+    The privKey provided must be the matching pubKey for that namespace as 
+    it is used to decrypt the token returned, thus proving
+    ownership of the namespace
 
-    The decrypted token can then be used to make administrative 
-    actions on that namespace until it expires.
+    Once decrypted, the token can then be used to make administrative 
+    actions on that namespace. Until it expires or is invalidated.
 
     Returns authToken as string.
     """
@@ -100,7 +101,7 @@ def sync_namespace(alias, reg_code, authToken, space=None, action=None):
     the requested namespace is returned as encrypted string. If a namespace 
     is provided then an UPDATE is assumed and the namespace will be saved to 
     the cloud. To delete a namespace, you must provide 'delete' as a string 
-    instead of a namesapce onject
+    instead of a namespace object
     """
     if space == None:
         action = 'get'
